@@ -1,4 +1,3 @@
-
 pipeline {
     agent any
 
@@ -13,6 +12,18 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 sh 'docker build -t self-healing-web-app .'
+            }
+        }
+
+        stage('Test Application') {
+            steps {
+                sh '''
+                    docker rm -f jenkins-test-app 2>/dev/null || true
+                    docker run -d --name jenkins-test-app -p 5001:5000 self-healing-web-app
+                    sleep 5
+                    curl -f http://localhost:5001/health
+                    docker rm -f jenkins-test-app
+                '''
             }
         }
     }
