@@ -10,7 +10,7 @@ This project demonstrates a simple web application that uses Docker health check
 - Docker
 - Docker Health Check
 - Python Docker SDK
-- Linux (Ubuntu on WSL2)
+- Linux (Ubuntu on WSL2 and AWS EC2)
 
 ## Project Structure
 ```text
@@ -71,5 +71,22 @@ Press `Ctrl+C` to stop the monitoring script.
 - Configuring Docker health checks
 - Monitoring container health
 - Automating container recovery using Python
+
+## AWS Deployment
+
+- **Cloud Platform:** AWS EC2
+- **Operating System:** Ubuntu Server 24.04
+- **Containerization:** Docker
+- **Web Server / Reverse Proxy:** Nginx
+- **Application Port:** 5000
+- **Public Access:** HTTP on port 80
+- **Health Check:** `/health`
+- **Self-Healing Monitor:** Python with Docker SDK
+
+The Flask application runs inside a Docker container on an AWS EC2 instance. Nginx forwards incoming HTTP requests to the application. Docker health checks monitor application health, and a Python monitoring script checks the container status and attempts to restart it if it becomes unhealthy.
+
+## CI/CD
+
+A Jenkins pipeline builds the Docker image and tests the application health endpoint.
 
 
