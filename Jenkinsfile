@@ -21,7 +21,7 @@ pipeline {
                     docker rm -f jenkins-test-app 2>/dev/null || true
                     docker run -d --name jenkins-test-app -p 5001:5000 self-healing-web-app
                     sleep 5
-                    curl -f http://localhost:5001/health
+                    curl -f http://172.17.0.1:5001/health
                     docker rm -f jenkins-test-app
                 '''
             }
