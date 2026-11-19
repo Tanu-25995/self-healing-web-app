@@ -13,16 +13,19 @@ This project demonstrates a simple web application that uses Docker health check
 - Linux (Ubuntu on WSL2 and AWS EC2)
 
 ## Project Structure
+
 ```text
 self-healing-web-app/
 ├── app/
 │   ├── app.py
 │   └── requirements.txt
 ├── Dockerfile
+├── Jenkinsfile
 ├── self_heal.py
 ├── .gitignore
 └── README.md
 ```
+
 
 ## How It Works
 1. The Flask web application runs inside a Docker container.
